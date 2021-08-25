@@ -1,0 +1,40 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.footer--container {
+  color: var(--secondary-500);
+  font-weight: 400;
+  margin: 0 auto;
+  padding: 16px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer--txt {
+  color: var(--gray-400);
+}
+
+.footer--heart {
+  font-size: 18px;
+}
+
+.footer--social-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer--social-name {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

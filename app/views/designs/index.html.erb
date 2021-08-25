@@ -1,0 +1,97 @@
+<h2 class="heading--sm text-center">Profile</h2>
+
+<section class="yield-section">
+  <div class="profile-container">
+    <%= image_tag "/images/default_avatar.png", class: "profile__img" %>
+    <h2 class="heading--xs">Diego Torres</h2>
+    <p class="gray-300">@diego</p>
+    <p class="gray-300">Joined on August 25, 2021</p>
+  </div>
+
+  <%= link_to "Edit Profile", "#", class: "btn btn--small btn--primary" %>
+
+  <div class="separator"></div>
+
+  <div class="tweet-card">
+    <div class="flex">
+      <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+
+      <div class="flex flex-column">
+        <p>
+          <span class="bold">The Great Tanus</span> <%= link_to "@tanus", "#", class: "primary-300" %>
+        </p>
+        <p class="content--small gray-300">20 minutes ago</p>
+      </div>
+    </div>
+
+    <p>
+      This universe is finite, its resources, finite… if life is left unchecked, life will cease to exist.
+    </p>
+
+    <div class="flex space-between">
+      <div class="flex gap-16">
+        <%= link_to image_tag('trash.svg'), "#", class: "gray-300" %>
+        <%= link_to image_tag('edit.svg'), "#", class: "gray-300" %>
+      </div>
+
+      <div class="flex gap-8 align-center">
+        <%= link_to image_tag('reply.svg'), "#", class: "gray-300" %>
+        <p class="gray-300">0</p>
+        <%= link_to image_tag('like.svg'), "#", class: "gray-300" %>
+        <p class="gray-300">0</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="separator"></div>
+
+  <%= form_with url: "#", method: :get do |form| %>
+    <div class="input">
+      <%= form.label :body, class:"content--xs overline"%>
+      <div class="tweet__container">
+        <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
+
+        <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="separator"></div>
+
+  <div class="form-section">
+    <p class="content--xs overline text-center">Continue with</p>
+
+    <div class="flex justify-center gap-16">
+      <%= link_to "Github", "#", class: "btn btn--medium btn--secondary" %>
+    </div>
+
+    <p class="content--xs overline text-center">Or</p>
+
+    <%= form_with url: "#", method: :get do |f| %>
+      <div class="input mb-16">
+        <%= f.label :email, class: "content--xs overline" %>
+        <div class="input__container">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com", class: "input__content" %>
+        </div>
+      </div>
+
+      <div class="input mb-16">
+        <%= f.label :password, class: "content--xs overline" %>
+        <div class="input__container">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "********", class: "input__content" %>
+        </div>
+      </div>
+
+      <div class="input mb-16">
+        <%= f.label :avatar, class: "content--xs overline" %>
+        <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+        <%= f.file_field :avatar, class: "input__content" %>
+      </div>
+
+      <%= f.submit "Sign in", class: "btn btn--primary" %>
+    <% end %>
+
+    <p class="content--sm text-center">Don't have an account?</p>
+    <%= link_to "Create an acount", "#", class: "primary-500 text-center" %>
+  </div>
+</section>

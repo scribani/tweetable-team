@@ -1,0 +1,42 @@
+.menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 64px;
+  width: 360px;
+  margin: auto;
+}
+
+.menu--content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0px;
+  list-style: none;
+  align-items: center;
+}
+
+.menu-open {
+  user-select: none;
+  width: 14px;
+  height: 12px;
+  display: inline-flex;
+  cursor: pointer;
+  background-image: url("icon-nav1.svg");
+}
+
+.menu-checkbox {
+  display: none;
+}
+
+.menu-checkbox:checked ~ .menu-open {
+  background-image: url("icon-nav2.svg");
+  width: 12px;
+  height: 12px;
+}
+
+.menu-checkbox:checked ~ .menu {
+  border: 2px solid var(--gray-200);
+  display: block;
+}
