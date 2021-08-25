@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   # Associations
   has_many :tweets, dependent: :destroy
-  has_many :likes, through: :tweets
+  has_many :liked_tweets, class_name: 'Tweet', foreign_key: 'tweet_id', through: :likes
+  has_one_attached :avatar
 
   has_secure_token
 end
