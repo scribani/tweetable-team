@@ -1,0 +1,9 @@
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.pagination span.disabled {
+  color: rgb(150, 150, 150);
+}

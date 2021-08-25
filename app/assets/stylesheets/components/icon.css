@@ -1,0 +1,19 @@
+.icon {
+  flex: none;
+  display: block;
+}
+
+.icon--lg {
+  height: 96px;
+  width: 96px;
+}
+
+.icon--md {
+  height: 48px;
+  width: 48px;
+}
+
+.icon--sm {
+  height: 24px;
+  width: 24px;
+}
