@@ -4,6 +4,6 @@ class Tweet < ApplicationRecord
   has_many :liked_users, class_name: 'User', foreign_key: 'user_id', through: :likes
   has_many :replies, class_name: 'Tweet', foreign_key: 'replied_to_id', dependent: :nullify,
                      inverse_of: 'replied_to'
-  # validations
+  # validation
   validates :body, presence: true, length: { maximum: 140 }
 end
