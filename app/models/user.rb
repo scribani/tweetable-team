@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   # validations
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, counter_cache: 'replies_count'
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
+
   # Enums
   enum role: { member: 0, admin: 1 }
 
