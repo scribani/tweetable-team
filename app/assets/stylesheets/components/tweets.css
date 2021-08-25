@@ -1,0 +1,14 @@
+.tweet-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
+  width: 100%;
+  padding: 4px 8px;
+}
+
+.tweet__img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50px;
+}
