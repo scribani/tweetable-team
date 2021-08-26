@@ -13,9 +13,9 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(body: params[:body], user_id: current_user.id)
+    @tweet = Tweet.new(body: params[:body], user_id: 1)
     if @tweet.save
-      redirect_to root
+      redirect_back fallback_location: '/'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
-    redirect_to root
+    redirect_back fallback_location: '/'
   end
 
   # GET /tweets/:id/edit
