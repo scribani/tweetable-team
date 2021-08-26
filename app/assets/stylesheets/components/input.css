@@ -43,7 +43,7 @@
   flex-direction: column;
   gap: 4px;
   padding: 4px 8px;
-  align-items: end;
+  align-items: flex-end;
   border-radius: 0px;
 }
 
