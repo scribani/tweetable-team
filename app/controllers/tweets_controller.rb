@@ -1,15 +1,17 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all
-    @currentuser = User.first
+    @tweets = Tweet.where(replied_to_id: nil).order(created_at: :desc,
+                                                    replies_count: :desc).page(params[:page]).per(5)
+    @currentuser = current_user
   end
 
   def show
     @tweet = Tweet.find_by(id: params[:id])
-    @currentuser = User.first
+    @currentuser = current_user
     return redirect_to root_path unless @tweet
 
-    @replies = @tweet.replies
+    @replies = @tweet.replies.order(created_at: :desc,
+                                    replies_count: :desc).page(params[:page]).per(5)
   end
 
   def new
@@ -20,9 +22,10 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
     if @tweet.save
-      redirect_back fallback_location: '/'
+      redirect_to @tweet
     else
-      render :new
+      flash[:alert] = @tweet.errors.full_messages.join("\n")
+      redirect_to root_path
     end
   end
 
