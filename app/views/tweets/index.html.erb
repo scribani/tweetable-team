@@ -1,0 +1,36 @@
+<h2 class="heading--sm text-center">Home</h2>
+
+<% @tweets.each do |tweet| %>
+  <% unless tweet.replied_to %>
+  <div class="tweet-card">
+    <div class="flex">
+      <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+
+      <div class="flex flex-column">
+        <p>
+          <span class="bold"><%= tweet.user.name %></span><%= link_to "@#{ tweet.user.username }", "#", class: "primary-300" %>
+        </p>
+        <p class="content--small gray-300"><%= time_ago_in_words(tweet.created_at) %> ago</p>
+      </div>
+    </div>
+
+    <p>
+      <%= tweet.body %>
+    </p>
+
+    <div class="flex space-between">
+      <div class="flex gap-16">
+        <%= link_to image_tag('trash.svg'), "#", class: "gray-300" %>
+        <%= link_to image_tag('edit.svg'), "#", class: "gray-300" %>
+      </div>
+
+      <div class="flex gap-8 align-center">
+        <%= link_to image_tag('reply.svg'), "#", class: "gray-300" %>
+        <p class="gray-300"><%= tweet.replies_count %></p>
+        <%= link_to image_tag('like.svg'), "#", class: "gray-300" %>
+        <p class="gray-300"><%= tweet.likes_count %></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
