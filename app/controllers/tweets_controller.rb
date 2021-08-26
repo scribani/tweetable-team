@@ -21,6 +21,12 @@ class TweetsController < ApplicationController
     end
   end
 
+  def destroy
+    @tweet = Tweet.find(params[:id])
+    @tweet.destroy
+    redirect_to root
+  end
+
   # GET /tweets/:id/edit
   def edit
     @tweet = Tweet.find(params[:id])
@@ -34,8 +40,6 @@ class TweetsController < ApplicationController
 
     render :edit
   end
-
-  def destroy; end
 
   private
 
