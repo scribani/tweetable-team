@@ -1,26 +1,32 @@
-<h2>Log in</h2>
+<h2 class="heading--sm text-center">Sign in to your account</h2>
+<div class="form-section">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <p class="content--xs overline text-center">Continue with</p>
+  
+  <div class="flex justify-center gap-16">
+    <%= link_to "Github", "#", class: "btn btn--medium btn--secondary" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <p class="content--xs overline text-center">Or</p>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="input mb-16">
+      <%= f.label :email, class:"content--xs overline"%>
+      <div class= "input__container">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input__content" %>
+      </div>
     </div>
+
+    <div class="input mb-16">
+      <%= f.label :password, class:"content--xs overline" %>
+      <div class= "input__container">
+        <%= f.password_field :password, autocomplete: "current-password", class: "input__content" %>
+      </div>
+    </div>
+
+    <%= f.submit "Log in", class: "btn btn--primary" %>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <p class="content--sm text-center">Don't have an account?</p>
+  <%= link_to "Create an acount", "#", class: "primary-500 text-center" %>
+</div>
