@@ -38,7 +38,7 @@
 }
 
 .tweet__container {
-  width: 296px;
+  width: 328px;
   height: 136px;
   flex-direction: column;
   gap: 4px;
@@ -199,11 +199,19 @@
 }
 
 @keyframes checkbox_checked {
-  50% { transform: scale(1.2) }
-  100% { transform: none }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: none;
+  }
 }
 
 @keyframes radio_selected {
-  50% { border: 8px solid var(--primary-300); }
-  100% { border: 4px solid var(--primary-300); }
+  50% {
+    border: 8px solid var(--primary-300);
+  }
+  100% {
+    border: 4px solid var(--primary-300);
+  }
 }
