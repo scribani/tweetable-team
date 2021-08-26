@@ -2,12 +2,12 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
   end
-  
+
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweet = found_tweet
     @replies = @tweet.replies
   end
-  
+
   def new
     @tweet = Tweet.new
   end
@@ -19,5 +19,17 @@ class TweetsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @tweet = found_tweet
+    @tweet.destroy
+    redirect_to root
+  end
+
+  private
+
+  def found_tweet
+    Tweet.find(params[:id])
   end
 end
