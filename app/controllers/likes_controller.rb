@@ -1,21 +1,15 @@
 class LikesController < ApplicationController
-  def new
-    @like = Like.new
-  end
-
   def create
-    @like = Like.new(like_params)
-    @like.user = User.first
-    if @like.save
-      redirect_back fallback_location: '/'
-    else
-      render :new
-    end
+    user = User.find_by(id: params[:user_id])
+    tweet = Tweet.find_by(id: params[:tweet_id])
+    like = Like.new(user: user, tweet: tweet)
+    like.save
+    redirect_back fallback_location: '/'
   end
 
-  private
-
-  def like_params
-    params.require(:like).permit(:user_id, :tweet_id)
+  def destroy
+    like = Like.find_by(id: params[:id])
+    like.destroy
+    redirect_back fallback_location: '/'
   end
 end

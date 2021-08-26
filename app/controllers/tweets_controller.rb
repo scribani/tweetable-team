@@ -5,7 +5,6 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find_by(id: params[:id])
-    @like = Like.find_by(tweet_id: params[:id])
     return redirect_to root_path unless @tweet
 
     @replies = @tweet.replies
