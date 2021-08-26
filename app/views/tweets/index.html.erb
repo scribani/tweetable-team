@@ -38,13 +38,13 @@
                 <div class="flex gap-8 align-center">
                     <%= link_to image_tag('reply.svg'), tweet_path(tweet), class: "gray-300" %>
                     <p class="gray-300"><%= tweet.replies_count %></p>
-                    <% tweet_liked = Like.find_by(tweet_id: tweet.id, user_id: User.first) %>
+                    <% tweet_liked = Like.find_by(tweet_id: tweet.id, user_id: @currentuser.id) %>
                     <% if tweet_liked %>
-                      <%= link_to user_like_path(id: tweet_liked.id, user_id: User.first), method: :delete do %>
+                      <%= link_to user_like_path(id: tweet_liked.id, user_id: tweet_liked.user_id), method: :delete do %>
                         <%= image_tag('likefull.svg') %>
                       <% end %>
                     <% else %>
-                      <%= link_to user_likes_path(tweet_id: tweet.id, user_id: User.first), method: :post do %>
+                      <%= link_to user_likes_path(tweet_id: tweet.id, user_id: @currentuser.id), method: :post do %>
                         <%= image_tag('like.svg', class: "gray-300") %>
                       <% end %>
                     <% end %>
