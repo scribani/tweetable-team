@@ -55,3 +55,11 @@
     <% end %>
   <% end %>
 <% end %>
+
+
+<div class="content--sm text-center">
+  <%= paginate @tweets %>
+  <div class="content--xs">
+    <%= page_entries_info @tweets%>
+  </div>
+</div>
