@@ -1,0 +1,40 @@
+.flash-card {
+  padding: 12px 16px;
+  box-shadow: var(--shadow-base);
+  border: 1px solid var(--gray-100);
+  background-color: white;
+  border-radius: 8px;
+  max-width: 320px;
+  position: absolute;
+  right: -344px;
+  top: 64px;
+  align-items: flex-start;
+}
+
+.flash-card img {
+  width: 32px;
+}
+
+.flash-card--fade_away {
+  animation: fade-away 5s forwards;
+}
+
+@keyframes fade-away {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+    top: 64px;
+  }
+  100% {
+    opacity: 0;
+    top: -100px;
+  }
+}
