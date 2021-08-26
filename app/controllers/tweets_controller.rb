@@ -4,7 +4,9 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweet = Tweet.find_by(id: params[:id])
+    return redirect_to root_path unless @tweet
+
     @replies = @tweet.replies
   end
 
@@ -13,7 +15,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(body: params[:body], user_id: 1)
+    @tweet = Tweet.new(tweet_params)
+    @tweet.user = User.first
     if @tweet.save
       redirect_back fallback_location: '/'
     else
@@ -44,6 +47,6 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.require(:tweet).permit(:body, :replied_to)
+    params.require(:tweet).permit(:body, :replied_to_id)
   end
 end

@@ -1,6 +1,6 @@
 <h2 class="heading--sm text-center">Home</h2>
 
-<%= form_with url: "/tweets", method: :post do |form| %>
+<%= form_with model: Tweet.new, method: :post do |form| %>
     <div class="input">
       <div class="tweet__container">
         <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
@@ -36,7 +36,7 @@
                   </div>
 
                 <div class="flex gap-8 align-center">
-                    <%= link_to image_tag('reply.svg'), "#", class: "gray-300" %>
+                    <%= link_to image_tag('reply.svg'), tweet_path(tweet), class: "gray-300" %>
                     <p class="gray-300"><%= tweet.replies_count %></p>
                     <%= link_to image_tag('like.svg'), "#", class: "gray-300" %>
                     <p class="gray-300"><%= tweet.likes_count %></p>
