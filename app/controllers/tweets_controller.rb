@@ -1,10 +1,12 @@
 class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
+    @currentuser = User.first
   end
 
   def show
     @tweet = Tweet.find_by(id: params[:id])
+    @currentuser = User.first
     return redirect_to root_path unless @tweet
 
     @replies = @tweet.replies

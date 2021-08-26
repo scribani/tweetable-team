@@ -25,7 +25,16 @@
     <div class="flex gap-8 align-center">
       <%= link_to image_tag('reply.svg'), tweet_path(@tweet), class: "gray-300" %>
       <p class="gray-300"><%= @tweet.replies_count %></p>
-      <%= link_to image_tag('like.svg'), "#", class: "gray-300" %>
+      <% tweet_liked = Like.find_by(tweet_id: @tweet.id, user_id: @currentuser.id) %>
+      <% if Like.find_by(tweet_id: @tweet.id, user_id: User.first) %>
+        <%= link_to user_like_path(id: tweet_liked.id, user_id: tweet_liked.id), method: :delete do %>
+          <%= image_tag('likefull.svg') %>
+        <% end %>
+      <% else %>
+        <%= link_to user_likes_path(tweet_id: @tweet.id, user_id: @currentuser.id), method: :post do %>
+          <%= image_tag('like.svg', class: "gray-300") %>
+        <% end %>
+      <% end %>
       <p class="gray-300"><%= @tweet.likes_count %></p>
     </div>
   </div>
@@ -38,12 +47,10 @@
   <div class="input">
     <div class="tweet__container">
       <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
-
       <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
     </div>
   </div>
 <% end %>
-
 <% @replies.each do |tweet| %>
   <%= link_to tweet_path(tweet) do %>
     <div class="tweet-card">
@@ -71,7 +78,16 @@
         <div class="flex gap-8 align-center">
             <%= link_to image_tag('reply.svg'), tweet_path(tweet), class: "gray-300" %>
             <p class="gray-300"><%= tweet.replies_count %></p>
-            <%= link_to image_tag('like.svg'), "#", class: "gray-300" %>
+            <% tweet_liked = Like.find_by(tweet_id: tweet.id, user_id: @currentuser.id) %>
+            <% if tweet_liked %>
+              <%= link_to user_like_path(id: tweet_liked.id, user_id: tweet_liked.user_id), method: :delete do %>
+                <%= image_tag('likefull.svg') %>
+              <% end %>
+            <% else %>
+              <%= link_to user_likes_path(tweet_id: tweet.id, user_id: @currentuser.id), method: :post do %>
+                <%= image_tag('like.svg', class: "gray-300") %>
+              <% end %>
+            <% end %>
             <p class="gray-300"><%= tweet.likes_count %></p>
         </div>
         </div>
