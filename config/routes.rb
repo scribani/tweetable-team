@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     post '/login', to: 'sessions#create'
     post '/logout', to: 'sessions#destroy'
     resources :tweets, only: %i[index show create update destroy]
-    resources :users, only: %i[show create update]
-    resources :likes, only: %i[index create destroy]
+    resources :users, only: %i[show create update] do
+      resources :likes, only: %i[index create destroy]
+    end
   end
 
   # Route for Design system reference
