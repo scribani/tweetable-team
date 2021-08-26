@@ -1,0 +1,9 @@
+<h2 class="heading--sm text-center">Edit Tweet</h2>
+<%= form_with model: @tweet, method: :patch do |form| %>
+  <div class="input">
+    <div class="tweet__container">
+      <%= form.text_area :body, class: "tweet__content" %>
+      <%= form.submit "Update", class: "btn btn--primary btn--small" %>
+    </div>
+  </div>
+<% end %>
