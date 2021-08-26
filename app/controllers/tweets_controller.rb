@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = found_tweet
+    @tweet = Tweet.find(params[:id])
     @replies = @tweet.replies
   end
 
@@ -22,14 +22,28 @@ class TweetsController < ApplicationController
   end
 
   def destroy
-    @tweet = found_tweet
+    @tweet = Tweet.find(params[:id])
     @tweet.destroy
     redirect_to root
   end
 
+  # GET /tweets/:id/edit
+  def edit
+    @tweet = Tweet.find(params[:id])
+  end
+
+  # PATCH/PUT /tweets/:id
+  def update
+    @tweet = Tweet.find(params[:id])
+
+    return redirect_to @tweet if @tweet.update(tweet_params)
+
+    render :edit
+  end
+
   private
 
-  def found_tweet
-    Tweet.find(params[:id])
+  def tweet_params
+    params.require(:tweet).permit(:body, :replied_to)
   end
 end
