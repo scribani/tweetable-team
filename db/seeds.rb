@@ -17,6 +17,7 @@ puts "Seeding users..."
 
 # Create 1 admin user
 admin = User.new(username: "admin", email: "admin@mail.com", name: "Admin", password: "supersecret", role: "admin")
+puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.save
 
 # Create 4 member users
 4.times do
@@ -59,11 +60,11 @@ end
 # Each member should like some tweets
 puts "Seeding likes..."
 User.all.each do |user|
-  tweets = Tweet.all
+  tweets = Tweet.all.shuffle
   rand(2..4).times do
     like_data = {
       user: user,
-      tweet: tweets.sample
+      tweet: tweets.pop
     }
     new_like = Like.new(like_data)
     puts "Like not created. Errors: #{new_like.errors.full_messages}" unless new_like.save
