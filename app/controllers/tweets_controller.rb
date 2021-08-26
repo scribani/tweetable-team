@@ -19,6 +19,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
+
     if @tweet.save
       redirect_back fallback_location: '/'
     else
