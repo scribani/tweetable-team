@@ -19,18 +19,17 @@
         <input type="checkbox" id="open" class="menu-checkbox">
         <label for="open" class="menu-open"></label>
 
-        <%# if user_signed_in? %>
+        <% if user_signed_in? %>
           <nav class="menu absolute">
             <div class="container">
-              <ul class="menu--content content--sm">
-                <%# current_user.username %>
-                <li>Welcome username!</li>
+              <ul class="menu--content content--sm">  
+                <li>Welcome <%=current_user.username%> </li>
                 <li class="primary-500"><%= link_to 'Profile', "#" %></li>
-                <li class="btn btn--secondary btn--small"><%= link_to "Log out", "#", method: :delete %></li>
+                <li class="btn btn--secondary btn--small"><%= link_to "Log out", "/users/sign_out", method: :delete %></li>
               </ul>
             </div>
           </nav>
-        <%#% else >
+        <% else %>
           <nav class="menu absolute">
             <div class="container">
               <ul class="menu--content content--sm">
@@ -39,7 +38,7 @@
               </ul>
             </div>
           </nav>
-        < end %>
+        <% end %>
       </header>
 
       <div class="absolute">
@@ -53,7 +52,8 @@
           </div>
         <% end %>
       </div>
-
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
 
       <footer>
