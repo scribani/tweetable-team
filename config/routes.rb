@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   resources :tweets
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  namespace :api do
+    post '/login', to: 'sessions#create'
+    post '/logout', to: 'sessions#destroy'
+    resources :tweets, only: %i[index show create update destroy]
+    resources :users, only: %i[show create update]
+    resources :likes, only: %i[index create destroy]
+  end
+
   # Route for Design system reference
   get '/design', to: 'designs#index'
 end
