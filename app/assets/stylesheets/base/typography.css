@@ -61,6 +61,11 @@ body {
   line-height: 16px;
 }
 
+.content--nn {
+  font-size: 16px;
+  line-height: 24px;
+}
+
 .overline {
   letter-spacing: 1.5px;
   text-transform: uppercase;

@@ -6,7 +6,7 @@
 
     <div class="flex flex-column">
       <p>
-        <span class="bold"><%= @tweet.user.name %></span><%= link_to "@#{ @tweet.user.username }", "#", class: "primary-300" %>
+        <span class="bold"><%= @tweet.user.name %></span><%= link_to "@#{ @tweet.user.username }", user_path(@tweet.user_id), class: "primary-300" %>
       </p>
       <p class="content--small gray-300"><%= time_ago_in_words(@tweet.created_at) %> ago</p>
     </div>
