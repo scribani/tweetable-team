@@ -4,4 +4,8 @@ class LikePolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def destroy?
+    user.admin? || record.user == user
+  end
 end

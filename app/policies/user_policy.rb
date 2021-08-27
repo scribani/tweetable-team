@@ -4,4 +4,8 @@ class UserPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def update?
+    user.admin? || record.id == user.id
+  end
 end
