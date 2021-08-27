@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Kaminari - add pagination helper
 gem 'kaminari'
 
+# pundit authorization
+gem 'pundit'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
