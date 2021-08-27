@@ -51,14 +51,16 @@
 
 <div class="separator"></div>
 
-<%= form_with model: Tweet.new, method: :post do |form| %>
-  <%= form.hidden_field :replied_to_id, :value => @tweet.id %>
-  <div class="input">
-    <div class="tweet__container">
-      <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
-      <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+<% if current_user %>
+  <%= form_with model: Tweet.new, method: :post do |form| %>
+    <%= form.hidden_field :replied_to_id, :value => @tweet.id %>
+    <div class="input">
+      <div class="tweet__container">
+        <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
+        <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <% @replies.each do |tweet| %>

@@ -12,13 +12,8 @@ class TweetsController < ApplicationController
                                     replies_count: :desc).page(params[:page]).per(5)
   end
 
-  def new
-    @tweet = Tweet.new
-  end
-
   def create
-    @tweet = Tweet.new(tweet_params)
-    @tweet.user = current_user
+    @tweet = Tweet.new(create_params)
 
     if @tweet.save
       redirect_to @tweet
@@ -30,6 +25,8 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
+
     @tweet.destroy
     redirect_back fallback_location: '/'
   end
@@ -37,11 +34,13 @@ class TweetsController < ApplicationController
   # GET /tweets/:id/edit
   def edit
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
   end
 
   # PATCH/PUT /tweets/:id
   def update
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
 
     return redirect_to @tweet if @tweet.update(tweet_params)
 
@@ -52,5 +51,13 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:body, :replied_to_id)
+  end
+
+  def create_params
+    {
+      body: tweet_params[:body],
+      replied_to_id: tweet_params[:replied_to_id].to_i,
+      user: current_user
+    }
   end
 end

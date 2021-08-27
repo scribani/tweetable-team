@@ -50,7 +50,7 @@ User.all.each do |user|
     reply_data = {
       body: Faker::Lorem.paragraph(sentence_count: 1, random_sentences_to_add: 2),
       user: user,
-      replied_to: parent_tweet.sample
+      replied_to_id: parent_tweet.sample.id
     }
     new_reply = Tweet.new(reply_data)
     puts "Reply not created. Errors: #{new_reply.errors.full_messages}" unless new_reply.save
