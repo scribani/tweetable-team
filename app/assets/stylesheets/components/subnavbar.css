@@ -2,7 +2,7 @@
   display: inline-block;
   text-align: center;
   height: 36px;
-  width: calc((100% / 2) - 18px);
+  width: calc((100% / 2) - 20px);
   margin: 0 8px;
   transition: all 400ms ease;
   cursor: pointer;
