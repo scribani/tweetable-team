@@ -3,6 +3,10 @@
   background-color: var(--gray-100);
 }
 
+.bg-secondary-300 {
+  background-color: var(--secondary-300);
+}
+
 .bg-primary-300 {
   background-color: var(--primary-300);
 }

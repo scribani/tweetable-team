@@ -1,44 +1,8 @@
 <h2 class="heading--sm text-center">Create an account</h2>
 <div class="form-section">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'form', action: 'Sign Up'%>
 
-    <div class= "input mb-16">
-      <%= f.label :username, class:"content--xs overline"%>
-      <div class= "input__container">
-        <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "input__content" %>
-      </div>
-    </div>
+  <p class="content--sm text-center">Already a member?</p>
 
-    <div class= "input mb-16">
-      <%= f.label :email, class:"content--xs overline"%>
-      <div class= "input__container">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input__content" %>
-      </div>
-    </div>
-
-    <div class= "input mb-16">
-      <%= f.label :name, class:"content--xs overline"%>
-      <div class= "input__container">
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input__content" %>
-      </div>
-    </div>
-
-    <div class= "input mb-16">
-      <%= f.label :password, class:"content--xs overline" %>
-      <div class= "input__container">
-        <%= f.password_field :password, autocomplete: "new-password", class: "input__content" %>
-      </div>
-    </div>
-
-    <div class= "input mb-16">
-      <%= f.label :password_confirmation, class:"content--xs overline"  %>
-      <div class= "input__container">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input__content" %>
-      </div>
-    </div>
-
-    <%= f.submit "Sign up", class: "btn btn--primary"%>
-  <% end %>
+  <%= link_to "Sign in", new_user_session_path, class: "primary-500 text-center" %>
 </div>
-<%= render "devise/shared/links" %>
