@@ -24,7 +24,7 @@
             <div class="container">
               <ul class="menu--content content--sm">  
                 <li>Thanks for using Tweetable!</li>
-                <li class="primary-500"><%= link_to 'Profile', "#" %></li>
+                <li class="primary-500"><%= link_to 'Profile', user_path(current_user) %></li>
                 <li class="btn btn--secondary btn--small"><%= link_to "Log out", "/users/sign_out", method: :delete %></li>
               </ul>
             </div>
