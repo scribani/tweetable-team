@@ -2,7 +2,6 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.where(replied_to_id: nil).order(created_at: :desc,
                                                     replies_count: :desc).page(params[:page]).per(5)
-    authorize Tweet
   end
 
   def show
@@ -11,17 +10,10 @@ class TweetsController < ApplicationController
 
     @replies = @tweet.replies.order(created_at: :desc,
                                     replies_count: :desc).page(params[:page]).per(5)
-    authorize @tweet
-  end
-
-  def new
-    @tweet = Tweet.new
-    authorize @tweet
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
-    authorize @tweet
 
     @tweet.user = current_user
 
