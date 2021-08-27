@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  attr_accessor :skip_password_validation
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,7 +20,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_tweets, class_name: 'Tweet', foreign_key: 'tweet_id', through: :likes
   has_one_attached :avatar
-
   has_secure_token
 
   def self.from_omniauth(auth)
@@ -34,5 +35,18 @@ class User < ApplicationRecord
     self.name = info.name
     self.email = info.email
     self.password = Devise.friendly_token[0, 20]
+  end
+
+  def invalidate_token
+    update(token: nil)
+  end
+
+  private
+
+  # This allows us to skip devise password validation if we set skip_password_validation as true
+  def password_required?
+    return false if skip_password_validation
+
+    super
   end
 end

@@ -178,6 +178,8 @@ GEM
     pg (1.2.3)
     puma (4.3.8)
       nio4r (~> 2.0)
+    pundit (2.1.1)
+      activesupport (>= 3.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-protection (2.1.0)
@@ -306,6 +308,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
   devise
@@ -318,6 +321,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
+  pundit
   rails (~> 6.0.3, >= 6.0.3.4)
   rspec-rails (~> 4.0.2)
   rubocop
