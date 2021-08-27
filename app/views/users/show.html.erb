@@ -11,9 +11,9 @@
   <%= link_to "Edit Profile", edit_user_path(@user), class: "btn btn--small btn--primary" %>
 
   <div class="tabs__container mt-16">
-    <%= radio_button_tag :tab, "tweets", params[:tab] == "tweets" ? true : false,  name: "radio" %>
+    <%= radio_button_tag :tab, "tweets", true,  name: "radio" %>
     <label for="tab_tweets" class="tab--tweets subnavbar__item content--nn gray-300" >Tweets (<%= @tweets.size %>)</label>
-    <%= radio_button_tag :tab, "likeds", params[:tab] == "likeds" ? true : false,  name: "radio" %>
+    <%= radio_button_tag :tab, "likeds", false,  name: "radio" %>
     <label for="tab_likeds" class="tab--likeds subnavbar__item content--nn gray-300" >Likes (<%= @likeds.size %>)</label>
 
     <div class="tabs__content" >
