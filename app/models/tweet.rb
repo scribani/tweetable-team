@@ -9,7 +9,7 @@ class Tweet < ApplicationRecord
   # validation
   validates :body, presence: true, length: { maximum: 140 }
   validates :replied_to_id,
-            inclusion: { in: proc { Tweet.all },
+            inclusion: { in: proc { Tweet.ids },
                          message: 'is not a valid tweet' },
             unless: proc { replied_to_id.nil? }
 end

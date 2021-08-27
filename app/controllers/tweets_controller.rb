@@ -13,9 +13,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
-
-    @tweet.user = current_user
+    @tweet = Tweet.new(create_params)
 
     if @tweet.save
       redirect_to @tweet
@@ -53,5 +51,13 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:body, :replied_to_id)
+  end
+
+  def create_params
+    {
+      body: tweet_params[:body],
+      replied_to_id: tweet_params[:replied_to_id].to_i,
+      user: current_user
+    }
   end
 end
