@@ -3,7 +3,11 @@
         <%= link_to tweet_path(tweet) do %>
             <div class="tweet-card">
                 <div class="flex">
-                    <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+                    <% if tweet.user.avatar.attached? %>
+                        <%= image_tag tweet.user.avatar, class: "tweet__img" %>
+                    <% else %>
+                        <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+                    <% end %>
 
                     <div class="flex flex-column">
                         <p>
