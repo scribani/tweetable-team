@@ -17,7 +17,7 @@ puts "Seeding users..."
 
 # Create 1 admin user
 admin = User.new(username: "admin", email: "admin@mail.com", name: "Admin", password: "supersecret", role: "admin")
-admin.save
+puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.save
 
 # Create 4 member users
 4.times do
