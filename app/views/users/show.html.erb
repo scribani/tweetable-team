@@ -2,7 +2,12 @@
 
 <section class="yield-section">
   <div class="profile-container">
-    <%= image_tag "/images/default_avatar.png", class: "profile__img" %>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: "profile__img" %>
+    <% else %>
+      <%= image_tag "/images/default_avatar.png", class: "profile__img" %>
+    <% end %>
+    
     <h2 class="heading--xs"><%= @user.name %></h2>
     <p class="gray-300">@<%= @user.username %></p>
     <p class="gray-300">Joined on <%= @user.created_at.strftime("%B %d, %Y") %></p>

@@ -15,17 +15,21 @@
 <% @tweets.each do |tweet| %>
   <% unless tweet.replied_to %>
     <%= link_to tweet_path(tweet) do %>
-        <div class="tweet-card">
-            <div class="flex">
-                <%= image_tag "/images/default_avatar.png", class: "tweet__img" %>
+      <div class="tweet-card">
+        <div class="flex">
+          <% if tweet.user.avatar.attached? %>
+            <%= image_tag tweet.user.avatar, class: "tweet__img"%>
+          <% else %>
+            <%= image_tag "/images/default_avatar.png", class: "tweet__img"%>
+          <% end %>
 
-                <div class="flex flex-column">
-                    <p>
-                    <span class="bold"><%= tweet.user.name %></span><%= link_to "@#{ tweet.user.username }", user_path(tweet.user_id), class: "primary-300" %>
-                    </p>
-                    <p class="content--small gray-300"><%= time_ago_in_words(tweet.updated_at) %> ago</p>
-                </div>
-            </div>
+          <div class="flex flex-column">
+            <p>
+            <span class="bold"><%= tweet.user.name %></span><%= link_to "@#{ tweet.user.username }", user_path(tweet.user_id), class: "primary-300" %>
+            </p>
+            <p class="content--small gray-300"><%= time_ago_in_words(tweet.updated_at) %> ago</p>
+          </div>
+        </div>
 
             <p>
             <%= tweet.body %>
