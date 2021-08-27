@@ -35,6 +35,7 @@ class User < ApplicationRecord
     self.name = info.name
     self.email = info.email
     self.password = Devise.friendly_token[0, 20]
+    self.avatar = info.image
   end
 
   def invalidate_token
