@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :tweet
 
-  def initialize(user, record)
+  def initialize(user, tweet)
     @user = user
-    @record = record
+    @tweet = tweet
   end
 
   def index?
@@ -17,7 +17,7 @@ class ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    true
   end
 
   def new?

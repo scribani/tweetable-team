@@ -1,14 +1,16 @@
 <h2 class="heading--sm text-center">Home</h2>
 
-<%= form_with model: Tweet.new, method: :post do |form| %>
-    <div class="input">
-      <div class="tweet__container">
-        <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
+<% if current_user %>
+  <%= form_with model: Tweet.new, method: :post do |form| %>
+      <div class="input">
+        <div class="tweet__container">
+          <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
 
-        <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+          <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+        </div>
       </div>
-    </div>
-<% end %>
+  <% end %>
+<% end%>
 
 <% @tweets.each do |tweet| %>
   <% unless tweet.replied_to %>
@@ -33,7 +35,7 @@
                 <div class="flex gap-16">
                   <%= link_to(image_tag("trash.svg", :alt => "delete"), "tweets/#{tweet.id}", method: :delete, controller: "tweets", action: "destroy",data: { confirm: "Do you want to delete it? ☺" }, class: "gray-300") %>
                   <%= link_to image_tag("edit.svg"), edit_tweet_path(tweet), class: "gray-300" %>
-                  </div>
+                </div>
 
                 <div class="flex gap-8 align-center">
                     <%= link_to image_tag('reply.svg'), tweet_path(tweet), class: "gray-300" %>

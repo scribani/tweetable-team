@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.where(replied_to_id: nil).order(created_at: :desc,
                                                     replies_count: :desc).page(params[:page]).per(5)
+    authorize Tweet
   end
 
   def show
@@ -10,14 +11,18 @@ class TweetsController < ApplicationController
 
     @replies = @tweet.replies.order(created_at: :desc,
                                     replies_count: :desc).page(params[:page]).per(5)
+    authorize @tweet
   end
 
   def new
     @tweet = Tweet.new
+    authorize @tweet
   end
 
   def create
     @tweet = Tweet.new(tweet_params)
+    authorize @tweet
+
     @tweet.user = current_user
 
     if @tweet.save
@@ -30,6 +35,8 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
+
     @tweet.destroy
     redirect_back fallback_location: '/'
   end
@@ -37,11 +44,13 @@ class TweetsController < ApplicationController
   # GET /tweets/:id/edit
   def edit
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
   end
 
   # PATCH/PUT /tweets/:id
   def update
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
 
     return redirect_to @tweet if @tweet.update(tweet_params)
 
