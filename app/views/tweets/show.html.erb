@@ -51,6 +51,7 @@
     </div>
   </div>
 <% end %>
+
 <% @replies.each do |tweet| %>
   <%= link_to tweet_path(tweet) do %>
     <div class="tweet-card">
@@ -94,3 +95,12 @@
     </div>
   <% end %>
 <% end %>
+
+<div class="content--sm text-center">
+  <%= paginate @replies %>
+  <div class="content--xs">
+    <%= page_entries_info @replies%>
+  </div>
+</div>
+
+<%= link_to "Back", :back, class: "primary-500 text-center" %>
