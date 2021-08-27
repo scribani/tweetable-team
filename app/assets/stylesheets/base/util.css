@@ -77,6 +77,10 @@
   margin-bottom: 40px;
 }
 
+.mt-16 {
+  margin-top: 16px;
+}
+
 /* Paddings */
 .p-0 {
   padding: 0;

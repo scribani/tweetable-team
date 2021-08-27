@@ -1,0 +1,47 @@
+.tabs__container {
+  width: 100%;
+  background-color: var(--gray-100);
+}
+
+.tabs__content {
+  position: relative;
+}
+
+.tabs__item-1,
+.tabs__item-2 {
+  display: none;
+}
+
+.tabs__content .tabs__item-1,
+.tabs__content .tabs__item-2 {
+  line-height: 1.8;
+  transition: all 600ms ease;
+  opacity: 0;
+  background: white;
+  padding-bottom: 20px;
+  background-color: var(--gray-100);
+  visibility: hidden;
+}
+
+.tabs__item-1,
+.tabs__item-2 {
+  width: 100%;
+}
+
+#tab_tweets,
+#tab_likeds {
+  display: none;
+}
+
+#tab_tweets:checked + label,
+#tab_likeds:checked + label {
+  border-bottom: 4px solid var(--primary-500);
+  color: var(--gray-400);
+}
+
+#tab_tweets:checked ~ div.tabs__content div.tabs__item-1,
+#tab_likeds:checked ~ div.tabs__content div.tabs__item-2 {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
