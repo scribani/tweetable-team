@@ -2,12 +2,10 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.where(replied_to_id: nil).order(created_at: :desc,
                                                     replies_count: :desc).page(params[:page]).per(5)
-    @currentuser = current_user
   end
 
   def show
     @tweet = Tweet.find_by(id: params[:id])
-    @currentuser = current_user
     return redirect_to root_path unless @tweet
 
     @replies = @tweet.replies.order(created_at: :desc,
