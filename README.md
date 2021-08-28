@@ -36,7 +36,7 @@ DB_HOST=tweetable_xxxx_db_1
 
 > Otherwise the server will start but you won't be able to see anything since the rails app is just showing for its local container.
 
-10. [Open](http://9.Open) a new window in your browser and go to `localhost:3000`
+10. Open a new window in your browser and go to `localhost:3000`
 11. If you want to interact with the RESTful API you can make use of the insomnia file provided within the project
 
 ## Running the tests
