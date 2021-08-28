@@ -38,7 +38,7 @@
             <div class="flex space-between">
                 
                 <div class="flex gap-16">
-                  <% if user_signed_in? && (tweet.user_id == current_user.id) %>
+                  <% if user_signed_in? && policy(tweet).edit? %>
                     <%= link_to(image_tag("trash.svg", :alt => "delete"), "tweets/#{tweet.id}", method: :delete, controller: "tweets", action: "destroy",data: { confirm: "Do you want to delete it? ☺" }, class: "gray-300") %>
                     <%= link_to image_tag("edit.svg"), edit_tweet_path(tweet), class: "gray-300" %>
                   <% end %>

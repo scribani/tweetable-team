@@ -16,7 +16,7 @@
 }
 
 .flash-card--fade_away {
-  animation: fade-away 5s forwards;
+  animation: fade-away 4s forwards;
 }
 
 @keyframes fade-away {

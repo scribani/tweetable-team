@@ -20,7 +20,7 @@ admin = User.new(username: "admin", email: "admin@mail.com", name: "Admin", pass
 puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.save
 
 # Create 4 member users
-4.times do
+4.times do |number|
   user_data = {
     username: Faker::Internet.unique.username,
     email: Faker::Internet.unique.safe_email,
@@ -28,6 +28,11 @@ puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.sav
     password: Faker::Internet.password(min_length: 6)
   }
   new_user = User.new(user_data)
+
+  io_path = (number + 1) > 3 ? "app/assets/images/default_avatar.png" : "app/assets/images/avatar#{number + 1}.png"
+  filename = io_path.split("/").last
+  new_user.avatar.attach(io: File.open(io_path), filename: filename)
+
   puts "User not created. Errors: #{new_user.errors.full_messages}" unless new_user.save
 
   # Each member should create some tweets
@@ -45,7 +50,7 @@ end
 # Each member should reply to some other tweets
 puts "Seeding reply tweets..."
 User.all.each do |user|
-  rand(2..4).times do
+  rand(4..6).times do
     parent_tweet = Tweet.all
     reply_data = {
       body: Faker::Lorem.paragraph(sentence_count: 1, random_sentences_to_add: 2),
@@ -61,7 +66,7 @@ end
 puts "Seeding likes..."
 User.all.each do |user|
   tweets = Tweet.all.shuffle
-  rand(2..4).times do
+  rand(6..8).times do
     like_data = {
       user: user,
       tweet: tweets.pop

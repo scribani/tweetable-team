@@ -54,9 +54,10 @@ class TweetsController < ApplicationController
   end
 
   def create_params
+    replied_to_id = tweet_params[:replied_to_id].nil? ? nil : tweet_params[:replied_to_id].to_i
     {
       body: tweet_params[:body],
-      replied_to_id: tweet_params[:replied_to_id].to_i,
+      replied_to_id: replied_to_id,
       user: current_user
     }
   end
