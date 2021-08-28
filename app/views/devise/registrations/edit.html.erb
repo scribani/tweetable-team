@@ -1,0 +1,6 @@
+<h2 class="heading--sm text-center">Edit <%= resource_name.to_s.humanize %></h2>
+
+<div class="form-section">
+  <%= render 'form', action: 'Update'%>
+  <%= link_to "Back", user_path(current_user), class: "primary-500 text-center" %>
+</div>

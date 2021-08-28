@@ -1,0 +1,80 @@
+<h2 class="heading--sm text-center">Home</h2>
+
+<% if current_user %>
+  <%= form_with model: Tweet.new, method: :post do |form| %>
+      <div class="input">
+        <div class="tweet__container">
+          <%= form.text_area :body, class: "tweet__content", placeholder: "Remember to think before write...", required: true %>
+
+          <%= form.submit "Tweet", class: "btn btn--primary btn--small" %>
+        </div>
+      </div>
+  <% end %>
+<% end%>
+
+<% @tweets.each do |tweet| %>
+  <% unless tweet.replied_to %>
+    <%= link_to tweet_path(tweet) do %>
+      <div class="tweet-card">
+        <div class="flex">
+          <% if tweet.user.avatar.attached? %>
+            <%= image_tag tweet.user.avatar, class: "tweet__img"%>
+          <% else %>
+            <%= image_tag "/images/default_avatar.png", class: "tweet__img"%>
+          <% end %>
+
+          <div class="flex flex-column">
+            <p>
+            <span class="bold"><%= tweet.user.name %></span><%= link_to "@#{ tweet.user.username }", user_path(tweet.user_id), class: "primary-300" %>
+            </p>
+            <p class="content--small gray-300"><%= time_ago_in_words(tweet.updated_at) %> ago</p>
+          </div>
+        </div>
+
+            <p>
+            <%= tweet.body %>
+            </p>
+
+            <div class="flex space-between">
+                
+                <div class="flex gap-16">
+                  <% if user_signed_in? && policy(tweet).edit? %>
+                    <%= link_to(image_tag("trash.svg", :alt => "delete"), "tweets/#{tweet.id}", method: :delete, controller: "tweets", action: "destroy",data: { confirm: "Do you want to delete it? ☺" }, class: "gray-300") %>
+                    <%= link_to image_tag("edit.svg"), edit_tweet_path(tweet), class: "gray-300" %>
+                  <% end %>
+                </div>
+                
+                <div class="flex gap-8 align-center">
+                    <%= link_to image_tag('reply.svg'), tweet_path(tweet), class: "gray-300" %>
+                    <p class="gray-300"><%= tweet.replies_count %></p>
+                    <% if user_signed_in? %>
+                      <% tweet_liked = Like.find_by(tweet_id: tweet.id, user_id: current_user) %>
+                      <% if tweet_liked %>
+                        <%= link_to user_like_path(id: tweet_liked.id, user_id: tweet_liked.user_id), method: :delete do %>
+                          <%= image_tag('likefull.svg') %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to user_likes_path(tweet_id: tweet.id, user_id: current_user), method: :post do %>
+                          <%= image_tag('like.svg', class: "gray-300") %>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to new_user_session_path do %>
+                        <%= image_tag('like.svg', class: "gray-300") %>
+                      <% end %>
+                    <% end %>
+                    <p class="gray-300"><%= tweet.likes_count %></p>
+                </div>
+            </div>
+        </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<div class="content--sm text-center">
+  <%= paginate @tweets %>
+  <div class="content--xs">
+    <%= page_entries_info @tweets%>
+  </div>
+</div>

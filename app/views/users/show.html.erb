@@ -1,0 +1,37 @@
+<h2 class="heading--sm text-center">Profile</h2>
+
+<section class="yield-section">
+  <div class="profile-container">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar, class: "profile__img" %>
+    <% else %>
+      <%= image_tag "/images/default_avatar.png", class: "profile__img" %>
+    <% end %>
+    
+    <h2 class="heading--xs"><%= @user.name %></h2>
+    <p class="gray-300">@<%= @user.username %></p>
+    <p class="gray-300">Joined on <%= @user.created_at.strftime("%B %d, %Y") %></p>
+  </div>
+
+  <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn--small btn--primary" if user_signed_in? && policy(@user).edit? %>
+
+  <div class="tabs__container mt-16">
+    <%= radio_button_tag :tab, "tweets", true,  name: "radio" %>
+    <label for="tab_tweets" class="tab--tweets subnavbar__item content--nn gray-300" >Tweets (<%= @tweets.size %>)</label>
+    <%= radio_button_tag :tab, "likeds", false,  name: "radio" %>
+    <label for="tab_likeds" class="tab--likeds subnavbar__item content--nn gray-300" >Likes (<%= @likeds.size %>)</label>
+
+    <div class="tabs__content" >
+      <div class="tabs__item-1" >
+        <%= render 'tweets', tweets: @tweets %>
+      </div>
+    
+      <div class="tabs__item-2" >
+        <%= render 'likeds', likeds: @likeds %>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to "Back", :back, class: "primary-500 text-center" %>
+</section>
+

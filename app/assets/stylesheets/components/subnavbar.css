@@ -1,0 +1,15 @@
+.subnavbar__item {
+  display: inline-block;
+  text-align: center;
+  height: 36px;
+  width: calc((100% / 2) - 20px);
+  margin: 0 8px;
+  transition: all 400ms ease;
+  cursor: pointer;
+}
+
+.subnavbar__item:hover,
+.subnavbar__item.active {
+  border-bottom: 4px solid var(--primary-500);
+  color: var(--gray-400);
+}

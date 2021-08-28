@@ -5,3 +5,75 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'faker'
+
+puts "Start seeding"
+Like.destroy_all
+Tweet.destroy_all
+User.destroy_all
+
+puts "Seeding users..."
+
+# Create 1 admin user
+admin = User.new(username: "admin", email: "admin@mail.com", name: "Admin", password: "supersecret", role: "admin")
+puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.save
+
+# Create 4 member users
+4.times do |number|
+  user_data = {
+    username: Faker::Internet.unique.username,
+    email: Faker::Internet.unique.safe_email,
+    name: Faker::Name.name,
+    password: Faker::Internet.password(min_length: 6)
+  }
+  new_user = User.new(user_data)
+
+  io_path = (number + 1) > 3 ? "app/assets/images/default_avatar.png" : "app/assets/images/avatar#{number + 1}.png"
+  filename = io_path.split("/").last
+  new_user.avatar.attach(io: File.open(io_path), filename: filename)
+
+  puts "User not created. Errors: #{new_user.errors.full_messages}" unless new_user.save
+
+  # Each member should create some tweets
+  puts "Seeding tweets for user..."
+  rand(2..4).times do
+    tweet_data = {
+      body: Faker::Lorem.paragraph(sentence_count: 1, random_sentences_to_add: 2),
+      user: new_user
+    }
+    new_tweet = Tweet.new(tweet_data)
+    puts "Tweet not created. Errors: #{new_tweet.errors.full_messages}" unless new_tweet.save
+  end
+end
+
+# Each member should reply to some other tweets
+puts "Seeding reply tweets..."
+User.all.each do |user|
+  rand(4..6).times do
+    parent_tweet = Tweet.all
+    reply_data = {
+      body: Faker::Lorem.paragraph(sentence_count: 1, random_sentences_to_add: 2),
+      user: user,
+      replied_to_id: parent_tweet.sample.id
+    }
+    new_reply = Tweet.new(reply_data)
+    puts "Reply not created. Errors: #{new_reply.errors.full_messages}" unless new_reply.save
+  end
+end
+
+# Each member should like some tweets
+puts "Seeding likes..."
+User.all.each do |user|
+  tweets = Tweet.all.shuffle
+  rand(6..8).times do
+    like_data = {
+      user: user,
+      tweet: tweets.pop
+    }
+    new_like = Like.new(like_data)
+    puts "Like not created. Errors: #{new_like.errors.full_messages}" unless new_like.save
+  end
+end
+
+puts "Seeding finish..."

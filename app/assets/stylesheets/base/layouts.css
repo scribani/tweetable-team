@@ -1,0 +1,114 @@
+.section {
+  padding: 96px 0px;
+}
+.section--sm {
+  padding: 64px 0px;
+}
+.section--xs {
+  padding: 16px 0px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: auto;
+  padding: 0px 16px;
+  max-width: 1280px;
+  background-color: #F2F2F2;
+}
+
+.gh_container{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid--2col {
+  grid-template-columns: repeat(2, 1fr); /* 1fr 1fr */
+}
+
+.grid--3col {
+  grid-template-columns: repeat(3, 1fr); /* 1fr 1fr 1fr */
+}
+
+.gap-32 {
+  gap: 32px;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+.gap-12 {
+  gap: 12px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.shadow {
+  box-shadow: var(--shadow-base);
+}
+
+@media (max-width: 1024px) {
+  .md\:grid--1col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 0px;
+  }
+
+  .container {
+    padding: 0px 16px;
+  }
+
+  .grid--2col,
+  .grid--3col {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,68 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  
+  <% if action == 'Sign Up'%>    
+    <div class="gh_container mb-16">
+      <p class="content--xs overline text-center">Continue with</p>
+    
+      <%= link_to "Github", user_github_omniauth_authorize_path, method: :post, class: "btn btn--secondary" %>
+
+      <p class="content--xs overline text-center">Or</p>
+    </div>
+  <% end %>
+    
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class= "input mb-16">
+    <%= f.label :username, class:"content--xs overline"%>
+    <div class= "input__container">
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "example", class: "input__content" %>
+    </div>
+  </div>
+
+  <div class= "input mb-16">
+    <%= f.label :email, class:"content--xs overline"%>
+    <div class= "input__container">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "example@mail.com", class: "input__content" %>
+    </div>
+  </div>
+
+  <div class= "input mb-16">
+    <%= f.label :name, class:"content--xs overline"%>
+    <div class= "input__container">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Example Name", class: "input__content" %>
+    </div>
+  </div>
+
+  <div class="input mb-16">
+    <%= f.label :avatar, class: "content--xs overline" %>
+    <% if resource.avatar.attached? %>
+      <%= image_tag resource.avatar, class: "tweet__img" %>
+    <% end %>
+    <%= f.file_field :avatar, class: "input__content"%>
+  </div>
+
+  <div class= "input mb-16">
+    <%= f.label :password, class:"content--xs overline" %>
+    <div class= "input__container">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "********", class: "input__content" %>
+    </div>
+  </div>
+
+  <div class= "input mb-16">
+    <%= f.label :password_confirmation, class:"content--xs overline"  %>
+    <div class= "input__container">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "********", class: "input__content" %>
+    </div>
+  </div>
+
+  <% if action == 'Update'%>
+    <div class= "input mb-16">
+      <%= f.label :current_password, class:"content--xs overline" %>
+      <div class= "input__container">
+        <%= f.password_field :current_password, autocomplete: "new-password", placeholder: "********", class: "input__content" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.submit "#{action}", class: "btn btn--primary"%>
+<% end %>

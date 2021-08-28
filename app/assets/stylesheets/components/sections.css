@@ -1,0 +1,14 @@
+.yield-section,
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0px;
+  align-items: center;
+}
+
+.form-section {
+  padding: 24px 16px;
+  background-color: white;
+  box-shadow: var(--shadow-base);
+}

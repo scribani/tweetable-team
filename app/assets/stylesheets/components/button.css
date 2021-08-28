@@ -1,0 +1,145 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  gap: 8px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  background-color: lightgray;
+  border: none;
+  border-radius: 4px;
+  box-shadow: var(--shadow-s);
+  width: 100%;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: 2px solid lightgray;
+  outline-offset: 2px;
+  /* outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary),
+    0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+.btn:disabled,
+.btn:disabled:hover {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  color: white;
+  background-color: var(--primary-300);
+}
+.btn--primary:hover {
+  background-color: var(--primary-400);
+}
+.btn--primary:focus {
+  outline: 2px solid var(--primary-300);
+  /* outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--secondary),
+    0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.btn--secondary {
+  color: white;
+  background-color: var(--secondary-300);
+}
+.btn--secondary:hover {
+  background-color: var(--secondary-400);
+}
+.btn--secondary:focus {
+  outline: 2px solid var(--secondary-300);
+  /* outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--secondary),
+    0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.btn--subtle {
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+}
+.btn--subtle:hover {
+  background-color: var(--gray-200);
+}
+.btn--subtle:focus {
+  outline: 2px solid var(--gray-100);
+  /* outline: 0;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--gray-200),
+    0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.btn__icon {
+  height: 20px;
+  width: 20px;
+}
+
+.btn--only-icon {
+  padding: 8px;
+  border-radius: 50px;
+}
+
+.btn--small {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 6px 10px;
+  width: max-content;
+}
+
+.btn--small .btn__icon {
+  height: 16px;
+  width: 16px;
+  flex: none;
+}
+
+.btn--small.btn--only-icon {
+  padding: 6px;
+}
+
+.btn--medium {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 8px 16px;
+}
+
+.btn--large {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 12px 24px;
+  letter-spacing: 1.5px;
+}
+.btn--large .btn__icon {
+  height: 24px;
+  width: 24px;
+  flex: none;
+}
+
+.btn--large.btn--only-icon {
+  padding: 12px;
+}
+
+@media (max-width: 480px) {
+  .sm\:btn--medium {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+.btn:active {
+  outline: none;
+  transform: translateY(0.2em)
+}
+.btn--loading .btn__icon {
+  animation: loading_icon 1s linear infinite;
+}
+
+@keyframes loading_icon {
+  100% { transform: rotate(-360deg) }
+}

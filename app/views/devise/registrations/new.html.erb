@@ -1,0 +1,8 @@
+<h2 class="heading--sm text-center">Create an account</h2>
+<div class="form-section">
+  <%= render 'form', action: 'Sign Up'%>
+
+  <p class="content--sm text-center">Already a member?</p>
+
+  <%= link_to "Sign in", new_user_session_path, class: "primary-500 text-center" %>
+</div>

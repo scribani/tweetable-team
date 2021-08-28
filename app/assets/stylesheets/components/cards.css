@@ -1,0 +1,33 @@
+.card {
+  background: white;
+  display: flex;
+  width: 328px;
+}
+
+.card__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card__img--cover {
+  max-width: 120px;
+  height: 160px;
+}
+
+.card__details {
+  display: flex;
+  flex-direction: column;
+  width: 208px;
+  gap: 10px;
+  padding: 8px;
+}
+
+.card__body {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 64px;
+}
