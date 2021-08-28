@@ -22,22 +22,22 @@ GITHUB_SECRET=*
 # http://localhost:3000/users/auth/github/callback
 ```
 
-4. Run `docker compose up`. This will give you your db_host (something similar to tweetable_xxxx_db_1)
-5. On a different window run `docker compose exec client bash`
-6. Go to your `.env` file and add a field with your db_host from step 3
+3. Run `docker compose up`. This will give you your db_host (something similar to tweetable_xxxx_db_1)
+4. On a different window run `docker compose exec client bash`
+5. Go to your `.env` file and add a field with your db_host from step 3
 
 ```
 DB_HOST=tweetable_xxxx_db_1
 ```
 
-7. Install all the gems with `bundle install`
-8. Initialize your DB by running `rails db:create db:migrate db:seed`
-9. To be able to see your app running on any browser, run it using `rails server -b 0.0.0.0`
+6. Install all the gems with `bundle install`
+7. Initialize your DB by running `rails db:create db:migrate db:seed`
+8. To be able to see your app running on any browser, run it using `rails server -b 0.0.0.0`
 
 > Otherwise the server will start but you won't be able to see anything since the rails app is just showing for its local container.
 
-10. Open a new window in your browser and go to `localhost:3000`
-11. If you want to interact with the RESTful API you can make use of the insomnia file provided within the project
+9. Open a new window in your browser and go to `localhost:3000`
+10. If you want to interact with the RESTful API you can make use of the insomnia file provided within the project
 
 ## Running the tests
 
